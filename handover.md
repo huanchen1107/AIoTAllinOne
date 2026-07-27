@@ -1,8 +1,7 @@
-# Handover Notes
+﻿# Handover Notes
 
 ## Work Summary (Last Time)
-- Verified start.sh and ending.sh functionality.
+- Implemented cross-platform scripts and verification tools
 
 ## Hints / Action Items for Today
-- [ ] Develop simulated hardware sensors.
-- [ ] Create a basic API backend.
+- [ ] Design backend REST API

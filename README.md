@@ -1,10 +1,10 @@
-# AIoT All-in-One
+﻿# AIoT All-in-One
 
 Welcome to the **AIoT All-in-One** project! This repository serves as a comprehensive framework and codebase for Artificial Intelligence of Things (AIoT) applications. It is designed to bridge the gap between IoT hardware devices, edge computing, cloud services, and AI/ML intelligence.
 
 ---
 
-## 🚀 Key Features
+## ?? Key Features
 
 * **Edge Intelligence**: Deploy lightweight AI/ML models on edge devices for real-time inference.
 * **IoT Device Management**: Connect, monitor, and control various IoT sensors and actuators.
@@ -14,23 +14,23 @@ Welcome to the **AIoT All-in-One** project! This repository serves as a comprehe
 
 ---
 
-## 🛠️ Project Structure
+## ??儭?Project Structure
 
 As the repository grows, it is organized into the following modules:
 
 ```text
 aiot/
-├── config/             # Configuration files for devices, databases, and servers
-├── edge/               # Scripts and models running on edge gateways/devices (e.g., Raspberry Pi)
-├── dashboard/          # Web dashboard (HTML/CSS/JS frontend & backend API)
-├── models/             # Pre-trained and custom AI/ML model definitions/weights
-├── scripts/            # Setup, deployment, and testing utilities
-└── README.md           # Project documentation
+??? config/             # Configuration files for devices, databases, and servers
+??? edge/               # Scripts and models running on edge gateways/devices (e.g., Raspberry Pi)
+??? dashboard/          # Web dashboard (HTML/CSS/JS frontend & backend API)
+??? models/             # Pre-trained and custom AI/ML model definitions/weights
+??? scripts/            # Setup, deployment, and testing utilities
+??? README.md           # Project documentation
 ```
 
 ---
 
-## 🏁 Getting Started
+## ?? Getting Started
 
 ### Prerequisites
 
@@ -60,7 +60,7 @@ aiot/
 
 ---
 
-## 📅 Recent Updates
+## ?? Recent Updates
 ### 2026-07-27
 - Verified start.sh and ending.sh functionality.
 
@@ -74,12 +74,22 @@ aiot/
 ---
 
 
-## 🤝 Contributing
+## ?? Contributing
 
 Contributions are welcome! Please feel free to open issues or submit pull requests for improvements, bug fixes, or new features.
 
 ---
 
-## 📄 License
+## ?? License
 
 This project is licensed under the MIT License - see the LICENSE file for details.
+
+
+## ?? Recent Updates
+
+### 2026-07-27
+- Implemented cross-platform scripts and verification tools
+
+---
+
+

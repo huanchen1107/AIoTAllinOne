@@ -8,6 +8,16 @@ echo "          🏁 AIoT Session Completion 🏁                   "
 echo "=========================================================="
 echo ""
 
+# Parse options
+TODO_ARGS=()
+while getopts "s:t:" opt; do
+  case $opt in
+    s) SUMMARY="$OPTARG" ;;
+    t) TODO_ARGS+=("$OPTARG") ;;
+    *) echo "Usage: $0 [-s summary] [-t todo_item]" ; exit 1 ;;
+  esac
+done
+
 # 1. Verify workspace consistency
 echo "🔍 [1/3] Verifying workspace and checking changes..."
 CHANGES=$(git status --porcelain)
@@ -55,6 +65,22 @@ if command -v node >/dev/null 2>&1; then
     fi
 fi
 
+# Check PHP syntax if php is available
+if command -v php >/dev/null 2>&1; then
+    PHP_FILES=$(find . -name "*.php" -not -path "*/.*")
+    if [ -n "$PHP_FILES" ]; then
+        echo "Checking PHP files..."
+        for file in $PHP_FILES; do
+            if php -l "$file" >/dev/null 2>&1; then
+                echo "  ✓ $file (Syntax OK)"
+            else
+                echo "  ✗ $file (Syntax Error)"
+                VALID=false
+            fi
+        done
+    fi
+fi
+
 if [ "$VALID" = true ]; then
     echo "✅ Verification complete: Code looks consistent!"
 else
@@ -70,25 +96,33 @@ echo ""
 # 2. Gather work summary and next actions
 echo "📝 [2/3] Writing work summaries and updates..."
 
-# Prompt for work summary
-echo "Enter a summary of work completed this session (e.g. Implemented hardware dashboard):"
-read -r SUMMARY
+# Prompt for work summary if not provided as argument
+if [ -z "$SUMMARY" ]; then
+    echo "Enter a summary of work completed this session (e.g. Implemented hardware dashboard):"
+    read -r SUMMARY
+fi
 
 if [ -z "$SUMMARY" ]; then
     echo "❌ Summary cannot be empty. Exiting."
     exit 1
 fi
 
-# Prompt for next actions
-echo "Enter action items for next time (Press Enter on an empty line to finish):"
+# Build todo list from CLI arguments or prompt
 TODO_ITEMS=""
-while true; do
-    read -r -p "- [ ] " item
-    if [ -z "$item" ]; then
-        break
-    fi
-    TODO_ITEMS="${TODO_ITEMS}- [ ] ${item}\n"
-done
+if [ ${#TODO_ARGS[@]} -gt 0 ]; then
+    for item in "${TODO_ARGS[@]}"; do
+        TODO_ITEMS="${TODO_ITEMS}- [ ] ${item}\n"
+    done
+else
+    echo "Enter action items for next time (Press Enter on an empty line to finish):"
+    while true; do
+        read -r -p "- [ ] " item
+        if [ -z "$item" ]; then
+            break
+        fi
+        TODO_ITEMS="${TODO_ITEMS}- [ ] ${item}\n"
+    done
+fi
 
 # Fallback default todo item if empty
 if [ -z "$TODO_ITEMS" ]; then
