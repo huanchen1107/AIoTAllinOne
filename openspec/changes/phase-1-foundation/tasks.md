@@ -7,18 +7,18 @@
 
 ## 2. Server Configuration
 
-- [ ] 2.1 Write the entrypoint script `backend/main.py` configuring a FastAPI instance.
-- [ ] 2.2 Add FastAPI `StaticFiles` mounting middleware in `backend/main.py` mapping `/static` files to the root url `/`.
+- [x] 2.1 Write the entrypoint script `backend/main.py` configuring a FastAPI instance.
+- [x] 2.2 Add FastAPI `StaticFiles` mounting middleware in `backend/main.py` mapping `/static` files to the root url `/`.
 
 ## 3. Frontend Layout Mockups
 
-- [ ] 3.1 Create static placeholder files: `static/index.html`, `static/styles.css`, and `static/app.js`.
-- [ ] 3.2 Design the HTML dashboard layout inside `static/index.html` using Tailwind CSS CDN.
-- [ ] 3.3 Add the static HTML controls: Mood options (5 buttons), Motivation options (4 options), Budget, and Distance fields.
-- [ ] 3.4 Design the mock restaurant cards layout: display 3 static mock cards showing a name, mock photo, rating, and placeholder recommendation reason.
-- [ ] 3.5 Design a slide-in login form overlay for authentication preview.
+- [x] 3.1 Create static placeholder files: `static/index.html`, `static/styles.css`, and `static/app.js`.
+- [x] 3.2 Design the HTML dashboard layout inside `static/index.html` using Tailwind CSS CDN.
+- [x] 3.3 Add the static HTML controls: Mood options (5 buttons), Motivation options (4 options), Budget, and Distance fields.
+- [x] 3.4 Design the mock restaurant cards layout: display 3 static mock cards showing a name, mock photo, rating, and placeholder recommendation reason.
+- [x] 3.5 Design a slide-in login form overlay for authentication preview.
 
 ## 4. Launch & Verification
 
-- [ ] 4.1 Start the FastAPI local server using uvicorn.
-- [ ] 4.2 Open `http://localhost:8000` in the browser and verify the single-page workbench loads successfully.
+- [x] 4.1 Start the FastAPI local server using uvicorn.
+- [x] 4.2 Open `http://localhost:8000` in the browser and verify the single-page workbench loads successfully.

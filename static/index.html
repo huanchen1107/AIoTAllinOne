@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MoodFood AI | Mindful Dining</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body class="bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 text-slate-100 min-h-screen flex flex-col">
+
+    <!-- Header Navigation -->
+    <header class="glass-panel sticky top-0 z-40 w-full px-6 py-4 flex items-center justify-between border-b border-white/5">
+        <div class="flex items-center gap-3">
+            <span class="text-2xl font-bold bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-500 bg-clip-text text-transparent tracking-wide">
+                MoodFood AI
+            </span>
+            <span class="text-xs bg-indigo-500/20 text-indigo-400 border border-indigo-500/30 px-2 py-0.5 rounded-full font-semibold">
+                MVP v0.1
+            </span>
+        </div>
+        <div class="flex items-center gap-4">
+            <button id="login-toggle-btn" class="px-4 py-2 text-sm font-semibold rounded-lg bg-white/5 hover:bg-white/10 border border-white/10 transition-all">
+                Sign In
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Workspace -->
+    <main class="flex-grow grid grid-cols-1 lg:grid-cols-12 gap-8 p-6 lg:p-12 max-w-7xl mx-auto w-full">
+        
+        <!-- Left Panel: Input Controls (4 columns) -->
+        <section class="lg:col-span-4 flex flex-col gap-6">
+            <div class="glass-panel p-6 rounded-2xl flex flex-col gap-6 shadow-xl">
+                <div>
+                    <h2 class="text-xl font-bold tracking-tight text-white mb-1">How is your mood today?</h2>
+                    <p class="text-sm text-slate-400">Tell us how you feel, and we'll match the dining vibes.</p>
+                </div>
+
+                <!-- Mood Options -->
+                <div class="flex flex-col gap-3">
+                    <label class="text-sm font-semibold text-slate-300">Choose Mood</label>
+                    <div class="grid grid-cols-2 gap-2">
+                        <button class="mood-btn px-4 py-3 rounded-xl border border-white/5 bg-white/5 hover:bg-white/10 flex flex-col items-center justify-center gap-1 active text-sm" data-mood="happy">
+                            <span class="text-2xl">😊</span>
+                            <span>Happy</span>
+                        </button>
+                        <button class="mood-btn px-4 py-3 rounded-xl border border-white/5 bg-white/5 hover:bg-white/10 flex flex-col items-center justify-center gap-1 text-sm" data-mood="tired">
+                            <span class="text-2xl">😴</span>
+                            <span>Tired</span>
+                        </button>
+                        <button class="mood-btn px-4 py-3 rounded-xl border border-white/5 bg-white/5 hover:bg-white/10 flex flex-col items-center justify-center gap-1 text-sm" data-mood="stressed">
+                            <span class="text-2xl">🤯</span>
+                            <span>Stressed</span>
+                        </button>
+                        <button class="mood-btn px-4 py-3 rounded-xl border border-white/5 bg-white/5 hover:bg-white/10 flex flex-col items-center justify-center gap-1 text-sm" data-mood="sad">
+                            <span class="text-2xl">😢</span>
+                            <span>Sad</span>
+                        </button>
+                        <button class="mood-btn col-span-2 px-4 py-3 rounded-xl border border-white/5 bg-white/5 hover:bg-white/10 flex items-center justify-center gap-2 text-sm" data-mood="adventurous">
+                            <span class="text-2xl">🤠</span>
+                            <span>Adventurous</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Dining Motivation -->
+                <div class="flex flex-col gap-2">
+                    <label for="motivation" class="text-sm font-semibold text-slate-300">Dining Motivation</label>
+                    <select id="motivation" class="w-full bg-slate-900 border border-white/10 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-indigo-500 text-slate-100">
+                        <option value="quick">Quick Meal (快速解決)</option>
+                        <option value="treat">Treat Myself (犒賞自己)</option>
+                        <option value="gathering">Gathering (與人聚餐)</option>
+                        <option value="explore">Explore New Cuisines (嘗試新口味)</option>
+                    </select>
+                </div>
+
+                <!-- Budget & Distance Controls -->
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="flex flex-col gap-2">
+                        <label for="budget" class="text-sm font-semibold text-slate-300">Max Budget</label>
+                        <select id="budget" class="bg-slate-900 border border-white/10 rounded-xl px-3 py-2 text-sm focus:outline-none focus:border-indigo-500 text-slate-100">
+                            <option value="1">$ (Under 150)</option>
+                            <option value="2">$$ (150-300)</option>
+                            <option value="3">$$$ (300-600)</option>
+                            <option value="4">$$$$ (600+)</option>
+                        </select>
+                    </div>
+                    <div class="flex flex-col gap-2">
+                        <label for="distance" class="text-sm font-semibold text-slate-300">Max Distance</label>
+                        <select id="distance" class="bg-slate-900 border border-white/10 rounded-xl px-3 py-2 text-sm focus:outline-none focus:border-indigo-500 text-slate-100">
+                            <option value="500">500 m</option>
+                            <option value="1000">1 km</option>
+                            <option value="2000">2 km</option>
+                            <option value="5000">5 km</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Submit Button -->
+                <button id="find-food-btn" class="btn-glow w-full py-4 rounded-xl bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 text-white font-bold text-base shadow-lg hover:shadow-indigo-500/20 active:scale-95 transition-all">
+                    Find Comfort Food 🚀
+                </button>
+            </div>
+        </section>
+
+        <!-- Right Panel: Results Workspace (8 columns) -->
+        <section id="results-section" class="lg:col-span-8 flex flex-col gap-6">
+            <div class="flex items-center justify-between">
+                <h2 class="text-xl font-bold tracking-tight text-white">Recommended for You</h2>
+                <span class="text-sm text-slate-400">Mock Data Preview</span>
+            </div>
+
+            <!-- Loading State Simulation (hidden initially) -->
+            <div id="loading-state" class="hidden flex flex-col items-center justify-center py-20 gap-4">
+                <div class="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-indigo-500"></div>
+                <p class="text-slate-400 text-sm">Consulting the oracle of flavors...</p>
+            </div>
+
+            <!-- Cards Container -->
+            <div id="cards-container" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+                
+                <!-- Card 1: Aroma Bistro -->
+                <div class="glass-card rounded-2xl overflow-hidden shadow-lg flex flex-col animate-fade-in-slide opacity-0" style="animation-delay: 0.1s;">
+                    <div class="h-44 w-full relative">
+                        <img src="/static/images/aroma_bistro.png" alt="Aroma Bistro" class="object-cover w-full h-full">
+                        <span class="absolute top-3 right-3 bg-indigo-500/90 text-white text-xs px-2.5 py-1 rounded-full font-bold shadow-md">
+                            Cafe
+                        </span>
+                    </div>
+                    <div class="p-5 flex-grow flex flex-col justify-between gap-4">
+                        <div>
+                            <h3 class="text-lg font-bold text-white mb-1">Aroma Bistro</h3>
+                            <p class="text-xs text-slate-400 mb-2">123 Cozy Lane, Xinyi District</p>
+                            <div class="flex items-center gap-2 mb-3">
+                                <span class="text-sm text-yellow-400">★ 4.7</span>
+                                <span class="text-xs text-slate-400">(156 reviews)</span>
+                            </div>
+                            <p class="text-sm text-slate-300 leading-relaxed">
+                                "Perfect quiet spot to unwind and destress with cozy comfort pasta dishes."
+                            </p>
+                        </div>
+                        <div class="flex items-center justify-between border-t border-white/5 pt-3">
+                            <span class="text-xs text-slate-400">350m • $$</span>
+                            <button class="text-xs text-indigo-400 hover:text-indigo-300 font-semibold">View Details</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 2: Sakura Sushi -->
+                <div class="glass-card rounded-2xl overflow-hidden shadow-lg flex flex-col animate-fade-in-slide opacity-0" style="animation-delay: 0.25s;">
+                    <div class="h-44 w-full relative">
+                        <img src="/static/images/sakura_sushi.png" alt="Sakura Sushi" class="object-cover w-full h-full">
+                        <span class="absolute top-3 right-3 bg-purple-500/90 text-white text-xs px-2.5 py-1 rounded-full font-bold shadow-md">
+                            Japanese
+                        </span>
+                    </div>
+                    <div class="p-5 flex-grow flex flex-col justify-between gap-4">
+                        <div>
+                            <h3 class="text-lg font-bold text-white mb-1">Sakura Sushi</h3>
+                            <p class="text-xs text-slate-400 mb-2">88 Blossom Ave, Da'an District</p>
+                            <div class="flex items-center gap-2 mb-3">
+                                <span class="text-sm text-yellow-400">★ 4.9</span>
+                                <span class="text-xs text-slate-400">(312 reviews)</span>
+                            </div>
+                            <p class="text-sm text-slate-300 leading-relaxed">
+                                "Treat yourself to high-quality sashimi to celebrate your good mood!"
+                            </p>
+                        </div>
+                        <div class="flex items-center justify-between border-t border-white/5 pt-3">
+                            <span class="text-xs text-slate-400">800m • $$$</span>
+                            <button class="text-xs text-indigo-400 hover:text-indigo-300 font-semibold">View Details</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 3: Spice Dynasty -->
+                <div class="glass-card rounded-2xl overflow-hidden shadow-lg flex flex-col animate-fade-in-slide opacity-0" style="animation-delay: 0.4s;">
+                    <div class="h-44 w-full relative">
+                        <img src="/static/images/spice_dynasty.png" alt="Spice Dynasty" class="object-cover w-full h-full">
+                        <span class="absolute top-3 right-3 bg-pink-500/90 text-white text-xs px-2.5 py-1 rounded-full font-bold shadow-md">
+                            Sichuan
+                        </span>
+                    </div>
+                    <div class="p-5 flex-grow flex flex-col justify-between gap-4">
+                        <div>
+                            <h3 class="text-lg font-bold text-white mb-1">Spice Dynasty</h3>
+                            <p class="text-xs text-slate-400 mb-2">45 Hot Pot Rd, Wanhua District</p>
+                            <div class="flex items-center gap-2 mb-3">
+                                <span class="text-sm text-yellow-400">★ 4.6</span>
+                                <span class="text-xs text-slate-400">(94 reviews)</span>
+                            </div>
+                            <p class="text-sm text-slate-300 leading-relaxed">
+                                "Bold, adventurous spicy flavors to match your curious dining motivation."
+                            </p>
+                        </div>
+                        <div class="flex items-center justify-between border-t border-white/5 pt-3">
+                            <span class="text-xs text-slate-400">1.2km • $$</span>
+                            <button class="text-xs text-indigo-400 hover:text-indigo-300 font-semibold">View Details</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <!-- Authentication Overlay Modal (hidden initially) -->
+    <div id="auth-overlay" class="fixed inset-0 bg-slate-950/80 backdrop-blur-md z-50 hidden items-center justify-center p-4">
+        <div class="glass-panel p-8 rounded-2xl w-full max-w-md shadow-2xl relative">
+            <button id="close-auth-btn" class="absolute top-4 right-4 text-slate-400 hover:text-white transition-all text-xl font-bold">&times;</button>
+            <h3 class="text-2xl font-bold mb-2 bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent">Welcome back</h3>
+            <p class="text-slate-400 text-sm mb-6">Sign in to save your default preferences and favorites.</p>
+
+            <form class="flex flex-col gap-4">
+                <div class="flex flex-col gap-2">
+                    <label class="text-xs font-semibold text-slate-300">Email Address</label>
+                    <input type="email" placeholder="name@domain.com" class="bg-slate-900/50 border border-white/10 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-indigo-500 text-slate-100">
+                </div>
+                <div class="flex flex-col gap-2">
+                    <label class="text-xs font-semibold text-slate-300">Password</label>
+                    <input type="password" placeholder="••••••••" class="bg-slate-900/50 border border-white/10 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-indigo-500 text-slate-100">
+                </div>
+                <button type="submit" onclick="event.preventDefault();" class="btn-glow mt-2 py-3 rounded-xl bg-gradient-to-r from-indigo-500 to-purple-500 text-white font-bold transition-all shadow-lg shadow-indigo-500/10">
+                    Sign In
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="text-center py-6 border-t border-white/5 mt-12 text-slate-500 text-xs">
+        &copy; 2026 MoodFood AI. Made with Spec-Driven Design.
+    </footer>
+
+    <script src="/static/app.js"></script>
+</body>
+</html>
