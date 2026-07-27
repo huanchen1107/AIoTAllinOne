@@ -1,6 +1,7 @@
 #!/bin/bash
 
 # ending.sh - Verify workspace, write work log, update README/handover, and push to GitHub.
+# Date: 2026-07-27
 
 echo "=========================================================="
 echo "          🏁 AIoT Session Completion 🏁                   "

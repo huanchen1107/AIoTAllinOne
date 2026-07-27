@@ -1,6 +1,7 @@
 #!/bin/bash
 
 # start.sh - Helper script to initialize Git config, read handover notes, and suggest tasks.
+# Date: 2026-07-27
 
 echo "=========================================================="
 echo "          🤖 AIoT Project Initialization 🤖               "
