@@ -60,6 +60,14 @@ aiot/
 
 ---
 
+## 📅 Recent Updates
+
+### 2026-07-27
+- Created ending.sh script
+
+---
+
+
 ## 🤝 Contributing
 
 Contributions are welcome! Please feel free to open issues or submit pull requests for improvements, bug fixes, or new features.
