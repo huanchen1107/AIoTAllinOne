@@ -61,6 +61,9 @@ aiot/
 ---
 
 ## 📅 Recent Updates
+### 2026-07-27
+- Added project rule and timestamp logging logic.
+
 
 ### 2026-07-27
 - Created ending.sh script

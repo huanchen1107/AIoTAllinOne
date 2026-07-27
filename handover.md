@@ -1,8 +1,7 @@
 # Handover Notes
 
 ## Work Summary (Last Time)
-- Created ending.sh script
+- Added project rule and timestamp logging logic.
 
 ## Hints / Action Items for Today
-- [ ] Verify and improve the AIoT modules.
-- [ ] Design dashboard UI mockups.
+- [ ] Verify if the system matches the target AIoT requirements.

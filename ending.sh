@@ -98,18 +98,19 @@ fi
 TIMESTAMP_LONG=$(date "+%Y-%m-%d %H:%M:%S")
 TIMESTAMP_SHORT=$(date "+%Y-%m-%d")
 
-# A. Update log.md (Prepending latest activity)
+# A. Update log.md (Prepending latest activity with TIMESTAMP on the first row)
 LOG_FILE="log.md"
+TIMESTAMP_LINE="# Last Updated: $TIMESTAMP_LONG"
 NEW_LOG_ENTRY="## [$TIMESTAMP_LONG] Update
-- $SUMMARY
+- $SUMMARY"
 
-"
 if [ -f "$LOG_FILE" ]; then
-    (echo "$NEW_LOG_ENTRY"; cat "$LOG_FILE") > "${LOG_FILE}.tmp" && mv "${LOG_FILE}.tmp" "$LOG_FILE"
-    echo "✅ Updated $LOG_FILE (prepended new entry)."
+    OLD_CONTENT=$(grep -v "^# Last Updated:" "$LOG_FILE" | sed '/./,$!d') # strip leading empty lines
+    printf "%s\n\n%s\n\n%s\n" "$TIMESTAMP_LINE" "$NEW_LOG_ENTRY" "$OLD_CONTENT" > "$LOG_FILE"
+    echo "✅ Updated $LOG_FILE (prepended new entry and updated timestamp on first row)."
 else
-    echo -e "# Project Activity Log\n\n$NEW_LOG_ENTRY" > "$LOG_FILE"
-    echo "✅ Created $LOG_FILE with initial log entry."
+    printf "%s\n\n# Project Activity Log\n\n%s\n" "$TIMESTAMP_LINE" "$NEW_LOG_ENTRY" > "$LOG_FILE"
+    echo "✅ Created $LOG_FILE with timestamp on the first row."
 fi
 
 # B. Update README.md (Adding to 'Recent Updates' or creating the section)
