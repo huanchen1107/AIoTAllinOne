@@ -1,30 +1,24 @@
-## 1. Project Initialization & Dependencies
+## 1. Environment & Setup
 
-- [ ] 1.1 Create the python virtual environment and verify python installation.
-- [ ] 1.2 Create `requirements.txt` containing dependencies: `fastapi`, `uvicorn`, `sqlmodel`, `python-dotenv`, `pyjwt`, `passlib[bcrypt]`.
-- [ ] 1.3 Create the project directories: `backend`, `backend/routers`, `static`.
-- [ ] 1.4 Create `.env` to declare `DATABASE_URL=sqlite:///./moodfood.db` and `JWT_SECRET=supersecretkey`.
+- [x] 1.1 Create the python virtual environment and verify python installation.
+- [x] 1.2 Create `requirements.txt` containing dependencies: `fastapi`, `uvicorn`, `sqlmodel`, `python-dotenv`, `pyjwt`, `passlib[bcrypt]`.
+- [x] 1.3 Create the project directories: `backend`, `backend/routers`, `static`.
+- [x] 1.4 Create `.env` to declare `DATABASE_URL=sqlite:///./moodfood.db` and `JWT_SECRET=supersecretkey`.
 
-## 2. Database Configuration & Models
+## 2. Server Configuration
 
-- [ ] 2.1 Write `backend/database.py` to initialize SQLModel engine and session helper.
-- [ ] 2.2 Define database tables in `backend/models.py` including `User`, `UserPreference`, `MoodRecord`, `RestaurantSnapshot`, `RecommendationSession`, and `RecommendationItem`.
-- [ ] 2.3 Add startup event handlers in `backend/main.py` to auto-create database tables on server start.
+- [ ] 2.1 Write the entrypoint script `backend/main.py` configuring a FastAPI instance.
+- [ ] 2.2 Add FastAPI `StaticFiles` mounting middleware in `backend/main.py` mapping `/static` files to the root url `/`.
 
-## 3. Authentication & Session Routing
+## 3. Frontend Layout Mockups
 
-- [ ] 3.1 Implement security helpers in `backend/auth_utils.py` for hashing passwords (passlib) and generating JWT tokens (pyjwt).
-- [ ] 3.2 Implement registration endpoint `POST /api/auth/register` in `backend/routers/auth.py` creating user and blank preferences.
-- [ ] 3.3 Implement login endpoint `POST /api/auth/login` returning user access tokens.
-- [ ] 3.4 Implement a GET preference endpoint `GET /api/user/preferences` requiring JWT auth dependency.
+- [ ] 3.1 Create static placeholder files: `static/index.html`, `static/styles.css`, and `static/app.js`.
+- [ ] 3.2 Design the HTML dashboard layout inside `static/index.html` using Tailwind CSS CDN.
+- [ ] 3.3 Add the static HTML controls: Mood options (5 buttons), Motivation options (4 options), Budget, and Distance fields.
+- [ ] 3.4 Design the mock restaurant cards layout: display 3 static mock cards showing a name, mock photo, rating, and placeholder recommendation reason.
+- [ ] 3.5 Design a slide-in login form overlay for authentication preview.
 
-## 4. Single-Page Static Frontend Shell
+## 4. Launch & Verification
 
-- [ ] 4.1 Set up static file mounting in `backend/main.py` using `StaticFiles` middleware pointing to `static/` directory.
-- [ ] 4.2 Create static web pages: `static/index.html`, `static/app.js`, and `static/styles.css` utilizing Bootstrap CSS via CDN.
-- [ ] 4.3 Implement vanilla JS frontend logic in `static/app.js` with placeholders for login, registration, preferences, and recommendation cards.
-
-## 5. Verification & Testing
-
-- [ ] 5.1 Create mock test suite `tests/test_auth.py` using FastAPI's `TestClient` to verify registration and login responses.
-- [ ] 5.2 Test launching the backend server and accessing http://localhost:8000.
+- [ ] 4.1 Start the FastAPI local server using uvicorn.
+- [ ] 4.2 Open `http://localhost:8000` in the browser and verify the single-page workbench loads successfully.
